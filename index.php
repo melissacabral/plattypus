@@ -20,6 +20,12 @@
 			if( is_singular() ){
 				//single post, page, attachment, etc
 				the_content();
+				wp_link_pages( array(
+					'before' => '<div class="pagination">Pages:',
+					'after'	=> '</div>',
+					'pagelink' => '<span>%</span>',
+					'next_or_number' => 'next',
+				) );
 			}else{
 				//not singular : archives, blog, search results
 				the_excerpt();				
@@ -37,6 +43,8 @@
 	<!-- end .post -->
 	<?php 
 		} //end while
+
+		platty_pagination();
 
 		comments_template();
 

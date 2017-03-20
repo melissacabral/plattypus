@@ -2,9 +2,7 @@
 <!-- end .wrapper -->
 
 <footer id="footer" role="contentinfo">
-	<small>
-		&copy; 2017 by SITE TITLE. All Rights Reserved.
-	</small>
+	<?php dynamic_sidebar('Footer Area'); //registered in functions.php ?>
 </footer>
 
 <?php wp_footer(); //hook. REQUIRED for plugins and admin bar to work ?>

@@ -46,7 +46,7 @@
 
 		platty_pagination();
 
-		comments_template();
+		comments_template( '/comments.php', true ); //include comments.php or WP default
 
 	}//end if there are posts
 	else{

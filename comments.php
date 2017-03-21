@@ -10,17 +10,17 @@ if( post_password_required( ) ){
 }
 
 //split up the comment counts
-$commentcount 	= count( $wp_query->comments_by_type['comment'] );
+$commentcount 	= get_comments_number();
 $pingscount 	= count( $wp_query->comments_by_type['pings'] );
 ?>
 
-<section class="comments">	
+<section class="comments">
 	<?php if( comments_open() AND $commentcount != 0 ){ ?>
 	<h3><?php echo $commentcount == 1 ? 'One Comment' : $commentcount . ' Comments' ; ?>
 	on this post</h3>
 	<?php } ?>
 
-	<?php if( comments_open() ){ ?>	
+	<?php if( comments_open() ){ ?>
 	<a href="#respond">Leave a Comment</a>
 	<?php } ?>
 
@@ -30,7 +30,7 @@ $pingscount 	= count( $wp_query->comments_by_type['pings'] );
 		) ); ?>
 	</ol>
 
-	<?php 
+	<?php
 	if( get_comment_pages_count() > 1 ){
 		echo '<div class="pagination">';
 		paginate_comments_links();

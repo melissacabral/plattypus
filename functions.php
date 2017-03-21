@@ -25,7 +25,7 @@ add_theme_support( 'custom-logo', array(
 add_theme_support( 'automatic-feed-links' );
 
 //improve the markup of WordPress generated code
-add_theme_support( 'html5', array('search-form', 'comment-list', 'comment-form', 
+add_theme_support( 'html5', array('search-form', 'comment-list', 'comment-form',
 	'gallery', 'caption', ) );
 
 //improve title tag for SEO. Remove <title> from header.php
@@ -63,7 +63,7 @@ function platty_menus(){
 add_action( 'init', 'platty_menus' );
 
 /**
- * Helper function to handle pagination. Call in any template file. 
+ * Helper function to handle pagination. Call in any template file.
  */
 function platty_pagination(){
 	if( ! is_singular() ){
@@ -127,6 +127,20 @@ function platty_comments_reply(){
 	wp_enqueue_script( 'comment-reply' );
 }
 add_action( 'wp_enqueue_scripts', 'platty_comments_reply' );
+
+/**
+ * Fix the comments number issue (remove ctrackbacks and pingbacks from comment count)
+ */
+add_filter('get_comments_number', 'comment_count', 0);
+function comment_count( $count ) {
+	if ( ! is_admin() ) {
+		global $id;
+		$comments_by_type = &separate_comments(get_comments('status=approve&post_id=' . $id));
+		return count($comments_by_type['comment']);
+	} else {
+		return $count;
+	}
+}
 
 
 

@@ -355,7 +355,7 @@ a {
     -webkit-box-flex: auto;
     -ms-flex: auto;
     flex: auto;
-    width: 300px;
+    width: 200px;
     margin: .5vw; }
     .post-type-archive-product .product-grid article img {
       width: 100%;

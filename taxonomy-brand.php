@@ -4,9 +4,8 @@
 	<?php 
 	if( have_posts() ){
 		?>
-		<h1>Products:</h1>
-		<div class="product-grid">
-			<?php
+		<h1>Products by <?php single_cat_title(); ?></h1>
+		<?php
 			while( have_posts() ){ 
 				the_post();
 				?>
@@ -29,7 +28,7 @@
 				<?php 
 		} //end while
 		?>
-	</div><!-- end of .product-grid -->
+	<!--</div> end of .product-grid -->
 	<?php
 
 	platty_pagination();

@@ -1,6 +1,13 @@
-/* todo: remove this later */
-@import "https://fonts.googleapis.com/css?family=Lato:400,400i,700|Playfair+Display:400,900";
+/*
+Theme Name: Plattypus
+Description: A WordPress theme Demo for WCM400 at Platt College
+Author: Melissa Cabral
+License: GPLv3
+Version: 0.1
+Theme URI: http://
+*/
 /* Source SCSS is at http://codepen.io/melissacabral/pen/xOaYgq */
+@import "https://fonts.googleapis.com/css?family=Lato:400,400i,700|Playfair+Display:400,900";
 body {
   margin: 0;
   font-family: sans-serif;
@@ -244,7 +251,6 @@ a {
     font-size: 16px;
     font-size: 1rem;
     padding: .5em;
-    background: rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 100%;
     display: block; }
@@ -333,12 +339,15 @@ a {
     font-size: 16px;
     font-size: 1rem;
     padding: .5em;
-    background: rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 100%;
     display: block; }
     .home .featured-products ul .caption h1, .home .featured-products ul .caption h2, .home .featured-products ul .caption h3, .home .featured-products ul .caption p {
       margin: 0 0 .5em 0; }
+
+.price {
+  display: block;
+  color: dodgerblue; }
 
 .post-type-archive-product .product-grid {
   padding: .5vw;
@@ -364,15 +373,32 @@ a {
     font-size: 16px;
     font-size: 1rem;
     padding: .5em;
-    background: rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 100%;
     display: block; }
     .post-type-archive-product .product-grid .caption h1, .post-type-archive-product .product-grid .caption h2, .post-type-archive-product .product-grid .caption h3, .post-type-archive-product .product-grid .caption p {
       margin: 0 0 .5em 0; }
-
-.price {
-  color: dodgerblue; }
+.post-type-archive-product .product-grid .price {
+  background-color: dodgerblue;
+  color: white;
+  display: inline-block;
+  padding: 0 .4em;
+  height: 1.6em;
+  line-height: 1.6em;
+  position: absolute;
+  bottom: 9em;
+  left: -2%;
+  border-radius: 5px 0 0 5px; }
+  .post-type-archive-product .product-grid .price:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0;
+    height: 0;
+    border-left: solid dodgerblue 10px;
+    border-top: solid transparent .8em;
+    border-bottom: solid transparent .8em; }
 
 /* ==wordpress core */
 .alignnone {

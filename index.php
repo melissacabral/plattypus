@@ -9,11 +9,18 @@
 	<article <?php post_class(); ?>>
 		<h2 class="entry-title"> 
 			<a href="<?php the_permalink(); ?>"> 
-				<?php the_title(); ?> 
+				<?php the_title();  ?> 
 			</a>
 		</h2>
 
-		<?php the_post_thumbnail( 'thumbnail' ); ?>
+		<?php 
+
+			if( $wp_query->current_post == 0 ){
+				the_post_thumbnail( 'large' );
+			}else{
+				the_post_thumbnail( 'thumbnail' );
+			}	
+		?>
 
 		<div class="entry-content">
 			<?php 

@@ -1,10 +1,14 @@
 /*
 Theme Name: Plattypus
+Text Domain: plattypus
 Description: A WordPress theme Demo for WCM400 at Platt College
 Author: Melissa Cabral
+Author URI: http://melissacabral.com
 License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl.html
 Version: 0.1
-Theme URI: http://
+Theme URI: http://wordpress.melissacabral.com
+Tags: custom-colors, custom-logo, custom-header, blog, two-columns
 */
 /* Source SCSS is at http://codepen.io/melissacabral/pen/xOaYgq */
 @import "https://fonts.googleapis.com/css?family=Lato:400,400i,700|Playfair+Display:400,900";
@@ -149,6 +153,10 @@ img {
   padding: 2%;
   background: white;
   /* full width main content*/ }
+  #content:after {
+    display: block;
+    content: '';
+    clear: both; }
   @media (min-width: 700px) {
     #content {
       box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2); } }
@@ -173,7 +181,7 @@ img {
   #content .hentry .wp-post-image.size-thumbnail {
     float: right;
     margin-left: 1em; }
-  .page-template-template-no-sidebar #content, .home.page #content {
+  .page-template-template-no-sidebar #content, .page-template-template-sitemap #content, .home.page #content {
     width: 98%;
     float: none;
     left: 0; }
@@ -498,5 +506,12 @@ header h2 {
 
 .sticky, .gallery-caption, .bypostauthor {
   text-decoration: none; }
+
+.one-third {
+  width: 33.33%;
+  float: left; }
+
+.format-quote {
+  background: yellow; }
 
 /*# sourceMappingURL=style.css.map */

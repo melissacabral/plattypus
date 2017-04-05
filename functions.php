@@ -1,5 +1,14 @@
 <?php
-//turn on sleeping features
+function platty_load_theme_textdomain() {
+load_theme_textdomain( 'plattypus', get_template_directory() . '/languages' );
+}
+add_action( 'after_setup_theme', 'platty_load_theme_textdomain' );
+
+
+//auto embed max width
+if ( ! isset( $content_width ) ) $content_width = 715;
+
+add_editor_style(); //make the file editor-style.css
 
 //featured image support:
 add_theme_support('post-thumbnails');
@@ -177,8 +186,109 @@ function platty_size(){
 	<?php }//end if size
 }
 
+/**
+ * Customization API additions - custom colors, fonts, layouts, etc...
+ */
+add_action( 'customize_register', 'platty_customizer' );
+function platty_customizer( $wp_customize ){
+	//register all sections, settings and controls here:
+	
+	//"accent color"
+	$wp_customize->add_setting( 'accent_color', array(
+		'default' => 'dodgerblue',
+	) );
+	//user interface for accent color
+	$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 
+		'accent_color_control', array(
+			'label' => 'Accent Color',
+			'section' => 'colors', //this one is built in
+			'settings'=> 'accent_color', //added above
+	) ) );
 
 
+	//Layout options
+	$wp_customize->add_section( 'platty_layout', array(
+		'title' 		=> 'Layout',
+		'capability' 	=> 'edit_theme_options',
+		'priority'		=> 20,
+	) );
+
+	$wp_customize->add_setting( 'header_size', array(
+		'default' => 'large',
+	) );
+
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 
+		'header_size_control', array(
+			'label' 	=> 'Header Height',
+			'section' 	=> 'platty_layout',
+			'settings' 	=> 'header_size',
+			'type'		=> 'radio',
+			'choices'	=> array(
+				'small'		=> 'Small',
+				'medium' 	=> 'Medium',
+				'large' 	=> 'Large',
+			),
+		) ) );
+
+	//Second Custom Logo
+	$wp_customize->add_setting( 'secondary_logo' );
+
+	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 
+		'secondary_logo_control', array(
+			'label' 	=> 'Secondary Logo',
+			'section' 	=> 'title_tagline', //built in "site identity" section
+			'settings'	=> 'secondary_logo'
+		) ) );
+
+} //end platty_customizer
+
+
+/**
+ * Customized CSS - This displays the customizer changes
+ */
+add_action( 'wp_head', 'platty_custom_css' );
+function platty_custom_css(){
+	switch( get_theme_mod( 'header_size' ) ){
+		case 'small':
+			$size = '20vh';
+		break;
+		case 'medium':
+			$size = '30vh';
+		break;
+		default:
+			$size = '40vh';
+	} //end switch
+?>
+
+	<style type="text/css">
+		#header .custom-logo-link{
+			background-color: <?php echo get_theme_mod( 'accent_color' ); ?>;
+		}
+		#header{
+			border-color: <?php echo get_theme_mod( 'accent_color' ); ?>;
+		}
+
+		@media screen and (min-width: 700px){
+			#header{
+				min-height: <?php echo $size; ?> ;
+			}
+		}
+	</style>
+
+	<?php
+}
+
+/**
+ * helper function to show custom secondary logo
+ */
+function platty_secondary_logo(){
+	$logo = get_theme_mod( 'secondary_logo' );
+	if( $logo ){
+		echo wp_get_attachment_image( $logo, 'thumbnail', false, array( 
+			'class' => 'secondary-logo',
+		) );
+	}
+}
 
 
 
